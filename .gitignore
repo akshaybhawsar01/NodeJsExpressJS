@@ -13,3 +13,7 @@
 /SaveDataWithPostman/node_modules
 /SaveDataWithPostman/.env
 /SaveDataWithPostman/package-lock.json
+
+/UploadFileToCloudinary/node_modules
+/UploadFileToCloudinary/.env
+/UploadFileToCloudinary/package-lock.json
