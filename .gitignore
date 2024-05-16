@@ -17,3 +17,11 @@
 /UploadFileToCloudinary/node_modules
 /UploadFileToCloudinary/.env
 /UploadFileToCloudinary/package-lock.json
+
+/MakeRoutesModular/node_modules
+/MakeRoutesModular/.env
+/MakeRoutesModular/package-lock.json
+
+/CreateFakeOrderApi/node_modules
+/CreateFakeOrderApi/.env
+/CreateFakeOrderApi/package-lock.json
