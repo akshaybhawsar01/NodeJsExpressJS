@@ -29,3 +29,7 @@
 /SoftwareDesignPatternsMVC/node_modules
 /SoftwareDesignPatternsMVC/.env
 /SoftwareDesignPatternsMVC/package-lock.json
+
+/BasicApiUsingProperMVC/node_modules
+/BasicApiUsingProperMVC/.env
+/BasicApiUsingProperMVC/package-lock.json
