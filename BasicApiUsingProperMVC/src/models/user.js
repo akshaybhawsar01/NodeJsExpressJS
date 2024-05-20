@@ -6,6 +6,11 @@ let userSchema = {
         type:String
     },
     last_name:String,
+    email:{
+        required:true,
+        type:String,
+        email:true
+    },
     phone_no:Number,
     password:String,
     role:String

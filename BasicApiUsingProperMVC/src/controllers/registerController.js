@@ -1,28 +1,46 @@
 const { User } = require("../models/user");
+const bcrypt = require('bcrypt');
 
 let registerFun  = (req,res) => {
     // console.log(req.body)
-    const user = new User({
-        name:req.body.name,
-        last_name:req.body.last_name,
-        phone_no:req.body.phone_no,
-        password:req.body.password,
-        role:req.body.role
-    }
-);
+    let saltRounds = 10;
+    const hash = bcrypt.hashSync(req.body.password, saltRounds);
+    req.body.password = hash;
+    User.findOne({ email: req.body.email }).exec()
+    .then(user => {
+        if (user === null) {
+            // User not found
+            console.log('User not found');
+                const user = new User({
+                    name:req.body.name,
+                    last_name:req.body.last_name,
+                    email:req.body.email,
+                    phone_no:req.body.phone_no,
+                    password:req.body.password,
+                    role:req.body.role
+                }
+            );
+            let promise =  user.save();
 
-    let promise =  user.save();
+            promise.then(() => {
 
-    promise.then(() => {
+                res.status(200).json({
+                    msg:"User Register successfully"
+                })
+            }).catch(e => {
+                res.status(400).json({
+                    msg:"error",
+                })
+            });
+        }else{
+            res.status(404).json({
+                msg:"User is already register",
+            })
+        }
 
-        res.status(200).json({
-            msg:"Data store successfully"
-        })
-    }).catch(e => {
-        res.status(400).json({
-            msg:"error",
-        })
     });
+
+    
 }
 
 exports.registerFun = registerFun
