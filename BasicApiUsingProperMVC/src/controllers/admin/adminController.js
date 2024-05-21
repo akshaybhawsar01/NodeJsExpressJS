@@ -1,7 +1,7 @@
 const { Company } = require("../../models/adminModel");
 const { validationResult } = require("express-validator");
 
-let adminFun = (req,res, next) => {
+const adminFun = (req,res, next) => {
 
     /* Check validation */
     try {
@@ -31,6 +31,7 @@ let adminFun = (req,res, next) => {
     } catch (err) {
         next(err);
     }
-}
+};
 
-exports.adminFun = adminFun
+   exports.adminFun = adminFun // Named Export
+// module.exports = adminFun; // Default export

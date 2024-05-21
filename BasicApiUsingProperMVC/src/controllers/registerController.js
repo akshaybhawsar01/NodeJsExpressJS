@@ -1,5 +1,6 @@
 const { User } = require("../models/user");
 const bcrypt = require('bcrypt');
+var jwt = require('jsonwebtoken');
 
 let registerFun  = (req,res) => {
     // console.log(req.body)
@@ -7,6 +8,7 @@ let registerFun  = (req,res) => {
     const hash = bcrypt.hashSync(req.body.password, saltRounds);
     req.body.password = hash;
     User.findOne({ email: req.body.email }).exec()
+
     .then(user => {
         if (user === null) {
             // User not found
@@ -23,9 +25,12 @@ let registerFun  = (req,res) => {
             let promise =  user.save();
 
             promise.then(() => {
+                // Generaet JWT token
+                var token = jwt.sign(req.body,"YOURSECRECTKEY");
 
                 res.status(200).json({
-                    msg:"User Register successfully"
+                    msg:"User Register successfully",
+                    token:token
                 })
             }).catch(e => {
                 res.status(400).json({
