@@ -1,10 +1,10 @@
 const express = require('express');
 const { teacherFun } = require('../controllers/teacher');
 
-const { authMiddlewear } = require('../middlewears/auth');
+const { authMiddlewear, teacherMiddlewear } = require('../middlewears/auth');
 
 const teacherRoute = express.Router()
 
-teacherRoute.post('/teacher/create',authMiddlewear,teacherFun)
+teacherRoute.post('/teacher/create',authMiddlewear,teacherMiddlewear,teacherFun)
 
 exports.teacherRoute = teacherRoute

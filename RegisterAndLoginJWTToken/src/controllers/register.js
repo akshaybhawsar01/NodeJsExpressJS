@@ -17,18 +17,19 @@ let registerFun  = (req,res) => {
                 last_name:req.body.last_name,
                 email:req.body.email,
                 phone:req.body.phone,
-                password:password
+                password:password,
+                role:req.body.role,
             })
 
             let promise = user.save()
 
             promise.then(() =>{
 
-                var token = jwt.sign(req.body, 'SECRETKEY');
+                // var token = jwt.sign(req.body, 'SECRETKEY');
 
                 res.status(200).json({
                     msg:"User register successfully",
-                    token:token
+                    // token:token
                 })
             }).catch(e => {
                 res.status(400).json({

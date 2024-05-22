@@ -1,6 +1,8 @@
 let teacherFun  = (req,res) => {
     res.json({
-        msg:"ok"
+        msg:"ok",
+        email:req.email,
+        role:req.role
     })
 }
 
