@@ -34,7 +34,10 @@
 /BasicApiUsingProperMVC/.env
 /BasicApiUsingProperMVC/package-lock.json
 
-
 /RegisterAndLoginJWTToken/node_modules
 /RegisterAndLoginJWTToken/.env
 /RegisterAndLoginJWTToken/package-lock.json
+
+/NodeExpressCRUDBeginerLevel/node_modules
+/NodeExpressCRUDBeginerLevel/.env
+/NodeExpressCRUDBeginerLevel/package-lock.json
