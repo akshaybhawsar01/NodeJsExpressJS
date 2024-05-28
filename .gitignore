@@ -41,3 +41,11 @@
 /NodeExpressCRUDBeginerLevel/node_modules
 /NodeExpressCRUDBeginerLevel/.env
 /NodeExpressCRUDBeginerLevel/package-lock.json
+
+/NodeExpressCRUDAdvancedLevel/node_modules
+/NodeExpressCRUDAdvancedLevel/.env
+/NodeExpressCRUDAdvancedLevel/package-lock.json
+
+/RealTimeChat/node_modules
+/RealTimeChat/.env
+/RealTimeChat/package-lock.json

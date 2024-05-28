@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Chat Application</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <h1>Chat Application</h1>
+    <ul class="mytable" style="list-style: none;">
+        <li>Welcome</li>
+
+    </ul>
+    <form class="Myform">
+        <input type="text" name="" size="100" class="myinput">
+        <input type="submit" name="" size="100">
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js" integrity="sha512-11t8Q+vY9JlCrr+PveZKTYJq8n7O09Y5X/pk/aMd3vJugSvu4xOunGEUzaADqL3I8cZKE/pBwwCfXzDkRJh2sQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        var socket = io();
+        var ul = document.querySelector('ul.mytable');
+        socket.on('serverevent',(payload) => {
+            // console.log(payload)
+            ul.innerHTML += `<li>${payload}</li>`;
+            // document.querySelector('ul.mytable').append(`<li>${payload}</li>`);
+        })
+        document.querySelector('form.Myform').addEventListener('submit', (e) => {
+            e.preventDefault()
+            const myMsg = document.querySelector('input.myinput').value;
+            
+            // console.log(myMsg)
+
+            socket.emit('clientevent',myMsg)
+        })
+    </script>
+</body>
+</html>
