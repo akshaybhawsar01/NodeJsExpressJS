@@ -1,6 +1,21 @@
 const express = require('express')
 const app = express();
 const env = require('dotenv')
+const nodemailer = require('nodemailer');
+
+
+const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
+    requireTLS: true,
+    auth: {
+        user: 'testdemo378@gmail.com',
+        pass: 'kgjxttccxqtnajfo' // Note: 'pass' instead of 'password'
+    }
+});
+
+
 env.config()
 const mongoose = require('mongoose');
 
@@ -75,7 +90,7 @@ app.get('/api/student/getAll',(req,res,next) => {
 
 app.delete('/api/student/:studentId',(req,res,next) => {
     if(req.params.studentId !== undefined){
-        Student.findByIdAndUpdate({
+        Student.deleteOne({
             _id:req.params.studentId}
         ).then(d => {
                 res.status(200).json({
@@ -116,6 +131,24 @@ app.put('/api/student/update',function(req,res,next) {
         })
     });
 })
+
+// Create a POST route to send emails
+app.post('/api/student/send-email', async (req, res) => {
+    try {
+        // const { to, subject, text, html } = req.body;
+        const responseEmail = await transporter.sendMail({
+            from: 'testdemo378@gmail.com',
+            to:"akshay@mailinator.com",
+            subject:"Test",
+            text:"Testing mail",
+            html:'<table style="width:100%"><tr><th>Firstname</th><th>Lastname</th><th>Age</th></tr><tr><td>Jill</td><td>Smith</td><td>50</td></tr><tr><td>Eve</td><td>Jackson</td><td>94</td></tr><tr><td>John</td><td>Doe</td><td>80</td></tr></table>'
+        });
+        res.status(200).json({ responseEmail });
+    } catch (err) {
+        res.status(400).json({ err });
+    }
+});
+
 
 app.listen(port,(req,res) => {
     console.log("port is running on",port)

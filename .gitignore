@@ -49,3 +49,7 @@
 /RealTimeChat/node_modules
 /RealTimeChat/.env
 /RealTimeChat/package-lock.json
+
+/ForgotPassword/node_modules
+/ForgotPassword/.env
+/ForgotPassword/package-lock.json
