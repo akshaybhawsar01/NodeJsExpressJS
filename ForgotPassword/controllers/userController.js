@@ -32,7 +32,7 @@ let forgotPassword = async (req,res) => {
                     to:"akshay@mailinator.com",
                     subject:"Test",
                     text:"Testing mail",
-                    html:'Please click on this link <a href="http://localhost:5000/user/forgot-password?token='+Randomstring+'">Reset your password</a>'
+                    html:'Please click on this link <a href="http://localhost:5000/user/reset-password?token='+Randomstring+'">Reset your password</a>'
                 });
 
                 res.status(200).send({

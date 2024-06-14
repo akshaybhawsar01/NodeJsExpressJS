@@ -66,7 +66,18 @@ async function main() {
         first_name: String,
         last_name: String,
         phone_no: Number,
-        profile: String
+        profile: String,
+        address_id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Addresses'
+        }
+    });
+    // console.log(Employee);
+    const Addresses = mongoose.model('Addresses', {
+        street: String,
+        city: String,
+        zip: Number,
+        state: String
     });
 
     A.then((data) => {
@@ -75,18 +86,31 @@ async function main() {
             // console.log(req.body.first_name);
             let img = Math.ceil((Math.random() * 100))+'-'+req.file.originalname;
 
-        // Create a new Employee document
-            const employee = new Employee({
-                first_name: req.body.first_name,
-                last_name: req.body.last_name,
-                phone_no: req.body.phone_no,
-                profile: req.file.filename
+            const address = new Addresses({
+                "street": "123 Main St",
+                "city": "Anytown",
+                "state": "CA",
+                "zip": "12345"
             });
+    
+            // Save the address and get the inserted ID
+            const savedAddress =  address.save().then(savedAddress => {
+                const addressId = savedAddress._id;
+            
+            // Create a new Employee document
+                const employee = new Employee({
+                    first_name: req.body.first_name,
+                    last_name: req.body.last_name,
+                    phone_no: req.body.phone_no,
+                    profile: req.file.filename,
+                    address_id: addressId
+                });
 
-            let promise =  employee.save();
+                let promise =  employee.save();
 
-            res.status(200).json({
-                msg:"File uploaded successfully"
+                res.status(200).json({
+                    msg:"File uploaded successfully"
+                })
             })
         })
     }).catch((error) => {
